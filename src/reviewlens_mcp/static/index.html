@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="ReviewLens MCP — read-only GitHub pull request evidence for AI clients.">
+  <title>ReviewLens MCP</title>
+  <link rel="stylesheet" href="/assets/editorial.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#main" aria-label="ReviewLens MCP home">
+      <span class="brand-mark">RL</span>
+      <span>ReviewLens <small>MCP</small></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#product">Product</a>
+      <a href="#demo" data-i18n="nav_demo">Demo</a>
+      <a href="#tools" data-i18n="nav_tools">Tools</a>
+      <a href="#security" data-i18n="nav_security">Security</a>
+    </nav>
+    <button id="lang" class="language" aria-label="Cambiar idioma">ES</button>
+  </header>
+
+  <main id="main">
+    <section id="product" class="intro">
+      <div class="intro-copy">
+        <p class="kicker">GITHUB PULL REQUEST REVIEW · READ ONLY</p>
+        <h1 data-i18n="hero_title">Technical review evidence for AI clients.</h1>
+        <p class="summary" data-i18n="hero_body">ReviewLens is an MCP server that gives AI clients a controlled way to inspect pull requests. It collects metadata, changed files, diffs and related tests without modifying the repository.</p>
+        <div class="intro-actions">
+          <a class="button primary" href="#demo" data-i18n="run_demo">Try the simulated review</a>
+          <a class="text-link" href="#architecture" data-i18n="see_arch">Understand the architecture →</a>
+        </div>
+      </div>
+      <dl class="facts" aria-label="Project facts">
+        <div><dt>Protocol</dt><dd>Model Context Protocol</dd></div>
+        <div><dt>Scope</dt><dd>7 read-only tools</dd></div>
+        <div><dt>Default</dt><dd>Deterministic mock provider</dd></div>
+        <div><dt>Live access</dt><dd>Optional GitHub REST adapter</dd></div>
+      </dl>
+    </section>
+
+    <section class="explanation">
+      <p class="section-number">01</p>
+      <div>
+        <p class="kicker">WHAT IT SOLVES</p>
+        <h2>Separate collection from interpretation.</h2>
+      </div>
+      <div class="body-copy">
+        <p>An AI reviewer should not receive broad repository access and improvise its own workflow. ReviewLens exposes a small set of typed operations and returns structured evidence.</p>
+        <p>The model can interpret that evidence at the client layer. The server remains deterministic, testable and auditable.</p>
+      </div>
+    </section>
+
+    <section id="demo" class="demo-section">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">LIVE PRODUCT WALKTHROUGH</p>
+          <h2 data-i18n="demo_title">Inspect the evidence produced for a simulated pull request.</h2>
+        </div>
+        <button class="button primary" id="run" data-i18n="run">Run review</button>
+      </div>
+      <div class="review-shell">
+        <div class="review-context">
+          <span class="status-dot"></span>
+          <div><strong>example/checkout-service</strong><small>Pull request #42 · deterministic fixture</small></div>
+          <span class="read-only">READ ONLY</span>
+        </div>
+        <div id="empty" class="empty-state" data-i18n="empty">Run the example to collect its evidence trail.</div>
+        <div id="result" hidden aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="tools" class="tool-section">
+      <div class="section-heading narrow">
+        <div><p class="kicker">MCP SURFACE</p><h2 data-i18n="tools_title">Seven operations, each with one responsibility.</h2></div>
+      </div>
+      <div id="tool-grid" class="tool-list"></div>
+    </section>
+
+    <section id="architecture" class="architecture-section">
+      <p class="section-number">02</p>
+      <div>
+        <p class="kicker">ARCHITECTURE</p>
+        <h2 data-i18n="arch_title">The protocol is an adapter, not the application.</h2>
+      </div>
+      <ol class="architecture-flow">
+        <li><span>01</span><strong>AI host</strong><small>Discovers and invokes tools</small></li>
+        <li><span>02</span><strong>MCP adapter</strong><small>Validates the public contract</small></li>
+        <li><span>03</span><strong>Review service</strong><small>Builds bounded evidence</small></li>
+        <li><span>04</span><strong>GitHub provider</strong><small>Mock or live REST access</small></li>
+      </ol>
+    </section>
+
+    <section id="security" class="security-section">
+      <div class="section-heading narrow">
+        <div><p class="kicker">SECURITY MODEL</p><h2 data-i18n="security_title">Repository content is data, never instruction.</h2></div>
+      </div>
+      <div class="security-lines">
+        <article><span>01</span><div><h3>Least privilege</h3><p>No merge, approval, comment or write operation exists in the provider or MCP contract.</p></div></article>
+        <article><span>02</span><div><h3>Bounded evidence</h3><p>Repository names, paths, result counts, timeouts and diff sizes are validated.</p></div></article>
+        <article><span>03</span><div><h3>Untrusted content</h3><p>Instruction-like repository text is flagged as evidence and is never executed.</p></div></article>
+        <article><span>04</span><div><h3>Explicit failure</h3><p>Rate limits, transient failures and limitations remain visible to the client.</p></div></article>
+      </div>
+    </section>
+
+    <section class="author-section">
+      <div class="author-copy">
+        <p class="kicker">BUILT BY</p>
+        <h2>Paula García Fernández</h2>
+        <p>AI engineer working across intelligent systems, data science and visual practice. ReviewLens is part of a portfolio focused on agents, protocols and explainable engineering.</p>
+        <div class="social-links">
+          <a href="https://github.com/pgf3712" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+          <a href="https://www.linkedin.com/in/paula-garcia-fernandez-pgf3712" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a>
+        </div>
+        <p class="personal-signature">Paula & Indy · Evidence first</p>
+      </div>
+      <div class="author-seal" aria-label="Pixel-art signature showing Paula and Indy">
+        <div class="pixel-stage">
+          <img class="paula-sprite" src="/assets/paula-pixel.png" alt="Pixel-art Paula with long blonde hair and black glasses." width="220" height="260">
+          <img class="indy-sprite" src="/assets/indy-pixel.png" alt="Pixel-art Indy, Paula's Siamese cat." width="260" height="180">
+          <span class="name-plate">PAULA</span>
+          <span class="desk-edge"></span>
+        </div>
+        <p>Personal detail, not product decoration.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>ReviewLens MCP</span>
+    <span>Read-only GitHub review infrastructure</span>
+    <span>Paula García Fernández · 2026</span>
+  </footer>
+  <script src="/assets/app.js"></script>
+</body>
+</html>
